@@ -1,2 +1,2 @@
 # CS2050
-All of my PreLab assignments
+This is a collection of all of my prelab assignments for CS 2050 at the University of Missouri.
