@@ -2,31 +2,24 @@
 # include <stdlib.h>
 # include "Header.h"
 
-void insertRandom(Tree *tree) {
+Tree* insertRandom(int value, Tree* tree) {
+	if (tree == NULL) {
+		return initNode(value);
+	}
 
-	int leftRight = rand() % 2;
-	if (leftRight) {
-		if (tree->less) {
-			insertRandom(tree->less);
-		}
-		else {
-			tree->less = initTree();
-		}
+	if (rand() % 2) {
+		tree->less = insertRandom(value, tree->less);
+	} else {
+		tree->greater = insertRandom(value, tree->greater);
 	}
-	else {
-		if (tree->greater) {
-			insertRandom(tree->greater);
-		}
-		else {
-			tree->greater = initTree();
-		}
-	}
+
+	return tree;
 }
 
-Tree* initTree() {
+Tree* initNode(int value) {
 	Tree* newTree = malloc(sizeof(Tree));
-	if (newTree != NULL
-		) {
+	if (newTree != NULL) {
+		newTree->value = value;
 		newTree->less = NULL;
 		newTree->greater = NULL;
 	}
@@ -53,4 +46,15 @@ int getHeight(Tree* tree) {
 	int greater = left > right ? left : right;
 
 	return greater + 1;
+}
+
+int countNodes(Tree* tree) {
+	if (tree == NULL) {
+		return 0;
+	}
+
+	int left = countNodes(tree->less);
+	int right = countNodes(tree->greater);
+
+	return (left + right + 1);
 }

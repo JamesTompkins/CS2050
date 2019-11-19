@@ -6,7 +6,8 @@ typedef struct tree {
 	struct tree *less, *greater;
 } Tree;
 
-void insertRandom(Tree*);
-Tree* initTree(); 
+Tree* insertRandom(int, Tree*);
+Tree* initNode(int);
 void freeTree(Tree*);
-int getHeight(Tree*);
+int getHeight(Tree*); 
+int countNodes(Tree*);
